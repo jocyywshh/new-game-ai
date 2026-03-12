@@ -229,8 +229,7 @@ def hiroshima_encounter(player):
             print("The scene fades and the opportunity passes.")
             return
         else:
-            print("Please answer yes or no.")
-
+            print("Please answer yes or no.") 
     print("\nAfterwards you ask Rengoku if he'd like to get mochi ice cream and sweet rice cakes.")
     print("He brightens and agrees; you wander together to a shop named 'YUMMIE$'.")
     print("Inside the cozy shop, you both savor cold mochi ice cream and sticky sweet rice cakes.")
@@ -267,28 +266,7 @@ def hiroshima_encounter(player):
             print("Please answer yes or no.")
 
 
-def hiroshima_encounter(player):
-    print("\nYou arrive at the Atomic Bomb Dome and notice a busy lunch box stand.")
-    print("A loud voice chants 'Tasty, Tasty!, Tasty!!' as you approach.")
-    print("Rengoku is there, surrounded by empty boxes—he's already eaten twenty!")
-    print("The workers are frantically making more, and the manager shouts, \"Please get this crazy man out of here!\"")
-    while True:
-        choice = input("Do you help the manager remove Rengoku? (yes/no): ")
-        if choice.lower() in ('yes','y'):
-            print("You step forward and calmly speak to Rengoku about the situation.")
-            print("He laughs heartily, 'Aah, you're full of spirit! I'll leave... after one more box!'")
-            print("He tosses you a lunch box and hands over some coins for your trouble.")
-            player.money += 15
-            player.health = min(100, player.health + 5)
-            print("You earn 15 coins and regain 5 health from the unexpected meal.")
-            break
-        elif choice.lower() in ('no','n'):
-            print("You decide not to intervene and move on.")
-            player.money = max(0, player.money - 10)
-            print("The manager scowls, and in the confusion you lose 10 coins.")
-            break
-        else:
-            print("Please answer yes or no.")
+
 
 def load_journey():
     print("\nLoad feature not implemented yet.")
