@@ -18,6 +18,7 @@ class Character:
         self.food = 100
         self.money = 50
         self.level = 1
+        self.sword_color = None
 
     def show_stats(self):
         print(f"\n{self.name} stats:")
@@ -25,6 +26,8 @@ class Character:
         print(f" Health: {self.health}")
         print(f" Food:   {self.food}")
         print(f" Money:  {self.money}")
+        if self.sword_color:
+            print(f" Sword:  {self.sword_color}")
 
 
 def start_new_journey():
@@ -54,7 +57,7 @@ def start_new_journey():
         elif choice == '4':
             visit_town(player)
         elif choice == '5':
-            print("Market not implemented yet.")
+            visit_market(player)
         elif choice == '6':
             print("Ending journey and returning to main menu.")
             break
@@ -104,6 +107,23 @@ def visit_ramen_bar(player):
         input("Press Enter to continue.")
 
 
+def visit_market(player):
+    import random
+    print("\n--- Market ---")
+    print("At the market, you find Haganezuka.")
+    print("You ask him if he could forge you a nichirin blade.")
+    print("He is angry but does it anyways and charges 200 for it.")
+    if player.money >= 200:
+        player.money -= 200
+        colors = ['black', 'red', 'light blue', 'pink']
+        player.sword_color = random.choice(colors)
+        print(f"When you grab the sword, it turns {player.sword_color}.")
+        print("You now have a nichirin blade!")
+    else:
+        print("You don't have enough money for the nichirin blade.")
+    input("Press Enter to continue.")
+
+
 def visit_town(player):
     towns = {
         '1': ('Osaka', 20),
@@ -135,6 +155,9 @@ def visit_town(player):
                 # special storyline for Hiroshima
                 if town == 'Hiroshima':
                     hiroshima_encounter(player)
+                # special storyline for Kyoto
+                if town == 'Kyoto':
+                    kyoto_encounter(player)
             else:
                 print("You don't have enough money to travel there.")
         elif choice == '5':
@@ -266,6 +289,32 @@ def hiroshima_encounter(player):
             print("Please answer yes or no.")
 
 
+
+
+def kyoto_encounter(player):
+    print("\nYou arrive in Kyoto and wander through hotels and food stands.")
+    print("Eventually, you end up in a random cemetery. You get an eerie feeling and assume it's a haunted cemetery.")
+    print("You don't realize there are multiple flowers as if you were in a garden...")
+    print("You smell the strong scent of a demon near. It's Doma. He appears from behind you.")
+    print("The cold mist brushes your face.")
+    while True:
+        choice = input("Do you run away or fight him? (run/fight): ")
+        if choice.lower() in ('run', 'r'):
+            print("You run away, but he chases after you and absorbs you.")
+            print("Game over.")
+            player.health = 0
+            sys.exit()
+        elif choice.lower() in ('fight', 'f'):
+            print("You decide to fight him. You battle for an hour, you're exhausted.")
+            print("You see an open spot and go for the kill. You kill him and after get promoted to a Hashira.")
+            print("Ubuyashiki talks to you and he gives you inspiring words.")
+            print("You won the game!")
+            player.level = 10  # Max level or something
+            player.health = 100
+            print("Congratulations! You have completed the game.")
+            sys.exit()
+        else:
+            print("Please choose run or fight.")
 
 
 def load_journey():
