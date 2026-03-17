@@ -187,15 +187,12 @@ def rest(player):
             print("and sleep peacefully until morning.")
             break
         elif choice == '2':
-            cost = 20
-            if player.money < cost:
-                print("The inn is too expensive right now.")
-                continue
-            player.money -= cost
+            player.money += 10
             player.food = max(0, player.food - 5)
             player.health = min(100, player.health + 25)
             print("A cute receptionist greets you with a smile and shows you to a cozy room.")
             print("You sleep soundly on soft futons and wake refreshed.")
+            print("While resting, you find 10 coins tucked away in a drawer!")
             break
         elif choice == '3':
             # Healing houses offer food and healing without charging money
